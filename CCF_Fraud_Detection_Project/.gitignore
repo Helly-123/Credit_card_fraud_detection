@@ -1,0 +1,14 @@
+data/
+outputs/
+
+*.csv
+*.parquet
+*.joblib
+*.pkl
+*.keras
+
+__pycache__/
+*.pyc
+
+venv/
+.venv/
