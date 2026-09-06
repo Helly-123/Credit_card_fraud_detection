@@ -55,7 +55,7 @@ import pandas as pd
 DATA_PATH = "data/creditcard.csv"
 
 
-def load_data(path=DATA_PATH):
+def load_data(path=DATA_PATH, drop_duplicates=True):
     """
     Load the credit card fraud dataset.
 
@@ -72,6 +72,14 @@ def load_data(path=DATA_PATH):
 
     # Read CSV file into a Pandas DataFrame.
     df = pd.read_csv(path)
+
+    if drop_duplicates:
+        before = len(df)
+        df = df.drop_duplicates().reset_index(drop=True)
+        removed = before - len(df)
+        if removed:
+            print(f"[load_data] Removed {removed} duplicate rows "
+                  f"({removed / before:.3%} of the dataset) before any further processing.")
 
     return df
 
